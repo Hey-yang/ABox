@@ -1,13 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Box.Accept.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Box.First.Controllers
+namespace Box.Accept.HeartBeat
 {
-    public class OkController : BaseController
+    /// <summary>
+    /// 心跳
+    /// </summary>
+    public class HeartBeatController : BaseController
     {
         /// <summary>
         /// 心跳检查方法
