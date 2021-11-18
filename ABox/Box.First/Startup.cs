@@ -1,3 +1,5 @@
+using Box.First.Helpers;
+using Box.First.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -65,6 +67,22 @@ namespace Box.First
             {
                 endpoints.MapControllers();
             });
+
+            #region 获取关于Consul的配置信息和注册
+            var consulSection = Configuration.GetSection("Consul");
+            string port = Configuration["port"];
+            string ip = HostHelpers.GetHostIp();
+            var consulOption = new ConsulServiceInfo
+            {
+                ServiceName = consulSection["ServiceName"] + "_" + DateTime.Now,
+                ServiceIP = ip,
+                ServicePort = Convert.ToInt32(port),
+                ServiceHealthCheck = string.Format(consulSection["ServiceHealthCheck"], ip, port),
+                ConsulAddress = consulSection["ConsulAddress"]
+            };
+            app.AddConsul(consulOption);
+            #endregion
+
         }
     }
 }

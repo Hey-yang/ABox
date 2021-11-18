@@ -1,3 +1,4 @@
+using Box.First.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +14,7 @@ namespace Box.First
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            ReleaseCreateHostBuilder(args).Build().Run();
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -24,12 +25,11 @@ namespace Box.First
         public static IHostBuilder ReleaseCreateHostBuilder(string[] args)
         {
             var config = new ConfigurationBuilder().AddCommandLine(args).Build();
-            string ip = config["ip"];
             string port = config["port"];
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().UseUrls($"http://{ip}:{port}");
+                    webBuilder.UseStartup<Startup>().UseUrls($"http://{HostHelpers.GetHostIp()}:{port}");
                 });
         }
           
