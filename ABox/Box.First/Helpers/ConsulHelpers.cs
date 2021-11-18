@@ -16,6 +16,7 @@ namespace Box.First.Helpers
             {
                 // consul服务地址，默认安装consul后端口为8500
                 x.Address = new Uri(consulServiceOptions.ConsulAddress);
+                x.Datacenter = consulServiceOptions.ConsulCenter;
             });
             var registration = new AgentServiceRegistration()
             {

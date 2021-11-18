@@ -30,5 +30,9 @@ namespace Box.First.Models
         /// Consul 地址
         /// </summary>
         public string ConsulAddress { get; set; }
+        /// <summary>
+        /// Consul 数据中心
+        /// </summary>
+        public string ConsulCenter { get; set; }
     }
 }
