@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box.First", "Box.First\Box.First.csproj", "{9DBB1E53-89AB-4E70-B9FD-C92A9B3EA5A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box.Accept", "Box.Accept\Box.Accept.csproj", "{AE706E3D-2081-4DAA-9BAB-9ADB081EE84C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box.Accept", "Box.Accept\Box.Accept.csproj", "{AE706E3D-2081-4DAA-9BAB-9ADB081EE84C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box.Test", "Box.Test\Box.Test.csproj", "{39B7CD68-2393-4B6A-89BC-A00845C07011}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AE706E3D-2081-4DAA-9BAB-9ADB081EE84C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE706E3D-2081-4DAA-9BAB-9ADB081EE84C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE706E3D-2081-4DAA-9BAB-9ADB081EE84C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B7CD68-2393-4B6A-89BC-A00845C07011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B7CD68-2393-4B6A-89BC-A00845C07011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B7CD68-2393-4B6A-89BC-A00845C07011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B7CD68-2393-4B6A-89BC-A00845C07011}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
