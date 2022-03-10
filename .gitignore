@@ -3,3 +3,5 @@ bin/
 App_Data/
 Log/
 .vs/
+.idea/
+Properties/

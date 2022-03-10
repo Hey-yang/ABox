@@ -32,14 +32,14 @@ namespace Box.First
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //ÊõøÊç¢Ëá™Â∏¶ÁöÑJSONÂ§ÑÁêÜ
             services.AddControllers().AddNewtonsoftJson(options =>
             {
-                //–ﬁ∏ƒ Ù–‘√˚≥∆µƒ–Ú¡–ªØ∑Ω Ω£¨ ◊◊÷ƒ∏–°–¥
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                //–ﬁ∏ƒ ±º‰µƒ–Ú¡–ªØ∑Ω Ω
                 options.SerializerSettings.Converters.Add(new IsoDateTimeConverter() { DateTimeFormat = "yyyy/MM/dd HH:mm:ss" });
             }
             );
+            services.AddHttpClient();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,7 +48,7 @@ namespace Box.First
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
@@ -56,7 +56,7 @@ namespace Box.First
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Box.First v1"));
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -68,19 +68,21 @@ namespace Box.First
                 endpoints.MapControllers();
             });
 
-            #region ªÒ»°πÿ”⁄Consulµƒ≈‰÷√–≈œ¢∫Õ◊¢≤·
+            #region ÈÖçÁΩÆConsulÂíåÊ≥®ÂÜå
+
             var consulSection = Configuration.GetSection("Consul");
             string port = Configuration["port"];
-            string ip = HostHelpers.GetHostIp();
+            string ip = Configuration["ip"];//HostHelpers.GetHostIp();
             var consulOption = new ConsulServiceInfo
             {
-                ServiceName = consulSection["ServiceName"] + "_" + DateTime.Now,
+                ServiceName = consulSection["ServiceName"],
                 ServiceIP = ip,
                 ServicePort = Convert.ToInt32(port),
                 ServiceHealthCheck = string.Format(consulSection["ServiceHealthCheck"], ip, port),
                 ConsulAddress = consulSection["ConsulAddress"]
             };
-            app.AddConsul(consulOption);
+            app.RegisterConsul(lifetime, consulOption);
+
             #endregion
 
         }

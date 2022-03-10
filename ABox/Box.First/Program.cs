@@ -26,10 +26,12 @@ namespace Box.First
         {
             var config = new ConfigurationBuilder().AddCommandLine(args).Build();
             string port = config["port"];
+            string ip = config["ip"];
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().UseUrls($"http://{HostHelpers.GetHostIp()}:{port}");
+                    //webBuilder.UseStartup<Startup>().UseUrls($"http://{HostHelpers.GetHostIp()}:{port}");
+                    webBuilder.UseStartup<Startup>().UseUrls($"http://{ip}:{port}");
                 });
         }
           
