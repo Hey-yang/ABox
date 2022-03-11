@@ -1,6 +1,7 @@
 ﻿using Box.First.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Box.First.Business
         [HttpGet, Route("Message")]
         public JsonResult Message()
         {
+            //MyConfigs.GetConfig()
             return new JsonResult("这是一条信息");
         }
     }
