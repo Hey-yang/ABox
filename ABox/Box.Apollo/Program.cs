@@ -1,4 +1,4 @@
-using Box.AdtExtend.Program;
+using Box.AdtExtend.Apollo;
 using Com.Ctrip.Framework.Apollo;
 using Com.Ctrip.Framework.Apollo.Enums;
 using Com.Ctrip.Framework.Apollo.Logging;
@@ -35,7 +35,7 @@ namespace Box.Apollo
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .ConfigureApollo()
+            .ConfigureApollo(ConfigFileFormat.Json, "1.Test")
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();

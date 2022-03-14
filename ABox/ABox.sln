@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box.Test", "Box.Test\Box.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box.Apollo", "Box.Apollo\Box.Apollo.csproj", "{CAEF1D5C-7E8F-4F54-9BE6-7955488A02CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box.AdtExtend", "Box.Adt.Extend\Box.AdtExtend.csproj", "{B7F5F31E-DFE3-4D6E-93DD-2E7B3739E041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box.AdtExtend", "Box.Adt.Extend\Box.AdtExtend.csproj", "{B7F5F31E-DFE3-4D6E-93DD-2E7B3739E041}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box.Polly", "Box.Polly\Box.Polly.csproj", "{F69AA3C9-75BF-4212-8066-83A781CC30A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box.Redis", "Box.Redis\Box.Redis.csproj", "{47F8C8D6-A67A-4E88-B0B3-DE5D1776C8B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{B7F5F31E-DFE3-4D6E-93DD-2E7B3739E041}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7F5F31E-DFE3-4D6E-93DD-2E7B3739E041}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7F5F31E-DFE3-4D6E-93DD-2E7B3739E041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F69AA3C9-75BF-4212-8066-83A781CC30A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69AA3C9-75BF-4212-8066-83A781CC30A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69AA3C9-75BF-4212-8066-83A781CC30A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69AA3C9-75BF-4212-8066-83A781CC30A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47F8C8D6-A67A-4E88-B0B3-DE5D1776C8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F8C8D6-A67A-4E88-B0B3-DE5D1776C8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F8C8D6-A67A-4E88-B0B3-DE5D1776C8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F8C8D6-A67A-4E88-B0B3-DE5D1776C8B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

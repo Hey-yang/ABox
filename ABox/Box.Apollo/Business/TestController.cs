@@ -21,7 +21,8 @@ namespace Box.Apollo.Business
         [HttpGet, Route("Message")]
         public JsonResult Message()
         {
-            var sss = _configuration["Text"];
+            var sss = _configuration["test"];
+            var aaa = _configuration.GetSection("test");
             return new JsonResult("这是一条信息" + sss);
         }
     }
