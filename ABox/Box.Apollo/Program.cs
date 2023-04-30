@@ -19,15 +19,15 @@ namespace Box.Apollo
         {
             try
             {
-                Console.WriteLine("¿ªÊ¼Æô¶¯API...");
+                Console.WriteLine("å¼€å§‹å¯åŠ¨API...");
                 var host = CreateHostBuilder(args).Build();
-                Console.WriteLine("APIÆô¶¯Íê³É!");
+                Console.WriteLine("APIå¯åŠ¨å®Œæˆ!");
                 host.Run();
             }
             catch (Exception exception)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("APIÆô¶¯Ê§°Ü!");
+                Console.WriteLine("APIå¯åŠ¨å¤±è´¥!");
                 Console.WriteLine(exception.ToString());
                 Console.ResetColor();
             }
@@ -38,6 +38,7 @@ namespace Box.Apollo
             .ConfigureApollo(ConfigFileFormat.Json, "1.Test")
             .ConfigureWebHostDefaults(webBuilder =>
             {
+                //ç»™apolloæ¥æ³¨å…¥
                 webBuilder.UseStartup<Startup>();
             });
     }
