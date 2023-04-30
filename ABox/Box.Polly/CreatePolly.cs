@@ -13,6 +13,7 @@ namespace Box.Polly
             // 超时1秒
             var timeoutPolicy = Policy.Timeout(1, TimeoutStrategy.Pessimistic, (context, timespan, task) =>
             {
+                //这里是超时的回调
                 Console.WriteLine("执行超时，抛出TimeoutRejectedException异常");
             });
 
@@ -24,6 +25,7 @@ namespace Box.Polly
                     retryAttempt => TimeSpan.FromSeconds(2),
                     (exception, timespan, retryCount, context) =>
                     {
+                        //这里回调,里面包含了一些错误的信息
                         Console.WriteLine($"{DateTime.Now} - 重试 {retryCount} 次 - 抛出{exception.GetType()}-{timespan.TotalMilliseconds}");
                     });
 
