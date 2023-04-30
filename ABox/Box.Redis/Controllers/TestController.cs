@@ -20,5 +20,12 @@ namespace Box.Redis.Controllers
             var ss =  new RedisHelper().GetValue("test");
             return new JsonResult(ss);
         }
+        
+        [HttpGet, Route("GetTest")]
+        public JsonResult GetTest()
+        {
+            var ss =  new RedisHelper().GetValue("test");
+            return new JsonResult(ss);
+        }
     }
 }
