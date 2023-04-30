@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace Box.First.Models
         /// </summary>
         public int ServicePort { get; set; }
         /// <summary>
-        /// 服务健康检查地址
+        /// 服务健康检查地址(就是心跳检查)
         /// </summary>
         public string ServiceHealthCheck { get; set; }
         /// <summary>
