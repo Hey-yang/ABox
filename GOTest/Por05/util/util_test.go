@@ -75,6 +75,8 @@ func TestMul3(t *testing.T) {
 		}
 	})
 }
+
+// 单元测试http，如果我们需要测试发送数据或者接收数据，可以采用httptest 测试库进行测试
 func TestConn(t *testing.T) {
 	req := httptest.NewRequest("GET", "https://www.baidu.com/", nil)
 	w := httptest.NewRecorder()

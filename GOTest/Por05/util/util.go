@@ -24,3 +24,7 @@ func After() {
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("hello baidu"))
 }
+
+func Hello() string {
+	return "Hello World"
+}
