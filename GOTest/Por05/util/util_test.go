@@ -1,6 +1,9 @@
 package util
 
 import (
+	"io"
+	"net/http/httptest"
+	"os"
 	"testing"
 )
 
@@ -71,4 +74,22 @@ func TestMul3(t *testing.T) {
 			t.Fatalf("不存在值 站点不存在")
 		}
 	})
+}
+func TestConn(t *testing.T) {
+	req := httptest.NewRequest("GET", "https://www.baidu.com/", nil)
+	w := httptest.NewRecorder()
+	helloHandler(w, req)
+
+	bytes, _ := io.ReadAll(w.Result().Body)
+	if string(bytes) != "hello baidu" {
+		t.Fatal("expected hello baidu,but got", string(bytes))
+	}
+}
+
+// 单元测试钩子 加了下面的代码其他测试用例执行就会执行这个
+func TestMain(m *testing.M) {
+	Before()
+	code := m.Run()
+	After()
+	os.Exit(code)
 }
