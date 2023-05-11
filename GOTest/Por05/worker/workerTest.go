@@ -1,11 +1,11 @@
-package main
+package worker
 
 import (
 	"fmt"
 	"time"
 )
 
-func main() {
+func TestWorker() {
 	const numJobs = 5
 	jobs := make(chan int, numJobs)
 	results := make(chan int, numJobs)
