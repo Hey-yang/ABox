@@ -48,3 +48,7 @@ func ParseSize(size string) (int64, string) {
 	sizeStr := strconv.FormatInt(num, 10) + unit
 	return BtyeNum, sizeStr
 }
+
+func GetValueSize(val any) int64 {
+	return 0
+}
