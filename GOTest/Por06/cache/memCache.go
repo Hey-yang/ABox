@@ -12,18 +12,23 @@ type memCache struct {
 	maxMemorySizeStr string
 	CurrMemorySize   int64
 	values           map[string]*memCacheValue
-	//写锁
+	//读写锁
 	locker sync.RWMutex
+	//清除过期缓存时间间隔
+	clearExpiredItemInterval time.Duration
 }
 
 type memCacheValue struct {
 	val        any
 	expireTime time.Time
+	expire     time.Duration
 	size       int64
 }
 
 func NewMemCache() Cache {
-	return &memCache{}
+	mc := &memCache{clearExpiredItemInterval: time.Second}
+	go mc.clearExpiredItem()
+	return mc
 }
 
 func (mc *memCache) SetMaxMemory(size string) bool {
@@ -72,20 +77,57 @@ func (mc *memCache) add(key string, val *memCacheValue) error {
 }
 
 func (mc *memCache) Get(key string) (any, bool) {
-	mc.locker.RLocker()
+	mc.locker.RLock()
 	defer mc.locker.RUnlock()
 	tmp, ok := mc.get(key)
-	return tmp, ok
+	if ok {
+		if tmp.expire != 0 && tmp.expireTime.Before(time.Now()) {
+			mc.del(key)
+			return nil, false
+		} else {
+			return tmp, true
+		}
+	}
+	return nil, false
 }
 func (mc *memCache) Del(key string) bool {
-	return false
+	mc.locker.Lock()
+	defer mc.locker.Unlock()
+	mc.del(key)
+	return true
 }
 func (mc *memCache) Exists(key string) bool {
-	return false
+	mc.locker.RLock()
+	defer mc.locker.RUnlock()
+	_, ok := mc.get(key)
+	return ok
 }
 func (mc *memCache) Flush() bool {
-	return false
+	mc.locker.Lock()
+	defer mc.locker.Unlock()
+	mc.values = make(map[string]*memCacheValue, 0)
+	mc.CurrMemorySize = 0
+	return true
 }
 func (mc *memCache) Keys() int64 {
-	return 0
+	mc.locker.RLock()
+	defer mc.locker.RUnlock()
+	return int64(len(mc.values))
+}
+
+func (mc *memCache) clearExpiredItem() {
+	timeTicker := time.NewTicker(mc.clearExpiredItemInterval)
+	defer timeTicker.Stop()
+	for {
+		select {
+		case <-timeTicker.C:
+			for key, item := range mc.values {
+				if item.expire != 0 && time.Now().After(item.expireTime) {
+					mc.locker.RLock()
+					mc.del(key)
+					mc.locker.RUnlock()
+				}
+			}
+		}
+	}
 }
