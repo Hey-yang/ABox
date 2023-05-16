@@ -26,7 +26,7 @@ type memCacheValue struct {
 }
 
 func NewMemCache() Cache {
-	mc := &memCache{clearExpiredItemInterval: time.Second}
+	mc := &memCache{values: make(map[string]*memCacheValue), clearExpiredItemInterval: time.Second}
 	go mc.clearExpiredItem()
 	return mc
 }
