@@ -2,7 +2,6 @@ package cache
 
 import (
 	"errors"
-	"fmt"
 	"sync"
 	"time"
 )
@@ -33,9 +32,7 @@ func NewMemCache() Cache {
 
 func (mc *memCache) SetMaxMemory(size string) bool {
 	mc.maxMemorySize, mc.maxMemorySizeStr = ParseSize(size)
-	fmt.Println(mc.maxMemorySize, mc.maxMemorySizeStr)
-	fmt.Println("called set max memory")
-	return false
+	return true
 }
 func (mc *memCache) Set(key string, val any, expire time.Duration) bool {
 	mc.locker.Lock()
@@ -47,7 +44,7 @@ func (mc *memCache) Set(key string, val any, expire time.Duration) bool {
 	}
 	mc.del(key)
 	err := mc.add(key, v)
-	if err == nil {
+	if err != nil {
 		//fmt.Println(err)
 		panic(err)
 		return false
@@ -85,7 +82,7 @@ func (mc *memCache) Get(key string) (any, bool) {
 			mc.del(key)
 			return nil, false
 		} else {
-			return tmp, true
+			return tmp.val, true
 		}
 	}
 	return nil, false

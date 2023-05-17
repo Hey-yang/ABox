@@ -15,14 +15,14 @@ func NewMemCache() *cacheServer {
 	}
 }
 func (cs *cacheServer) SetMaxMemory(size string) bool {
-	return cs.SetMaxMemory(size)
+	return cs.memCache.SetMaxMemory(size)
 }
 func (cs *cacheServer) Set(key string, val any, expire ...time.Duration) bool {
 	expireTs := time.Second * 0
 	if len(expire) > 0 {
 		expireTs = expire[0]
 	}
-	return cs.Set(key, val, expireTs)
+	return cs.memCache.Set(key, val, expireTs)
 }
 
 func (cs *cacheServer) Get(key string) (any, bool) {

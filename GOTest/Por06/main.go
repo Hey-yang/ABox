@@ -2,9 +2,11 @@ package main
 
 import (
 	cache_server "Por06/cache.server"
+	"fmt"
 	"time"
 )
 
+// 内存缓存系统
 func main() {
 	//var a = cache.NewMemCache()
 	//a.SetMaxMemory("100MB")
@@ -17,8 +19,10 @@ func main() {
 	cache.Set("bool", false)
 	cache.Set("data", map[string]any{"a": 4, "a1": 3})
 
-	cache.Get("int")
-	cache.Get("bool")
+	//var s1, _ = cache.Get("int")
+	fmt.Println(cache.Get("int"))
+	//var s2, _ = cache.Get("bool")
+	fmt.Println(cache.Get("bool"))
 	cache.Flush()
 	cache.Keys()
 }

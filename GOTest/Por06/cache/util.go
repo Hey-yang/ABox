@@ -18,7 +18,7 @@ const (
 
 func ParseSize(size string) (int64, string) {
 	//默认大小为100MB
-	re, _ := regexp.Compile("[0-9]+]")
+	re, _ := regexp.Compile("[0-9]+")
 	unit := string(re.ReplaceAll([]byte(size), []byte("")))
 	num, _ := strconv.ParseInt(strings.Replace(size, unit, "", 1), 10, 64)
 	unit = strings.ToUpper(unit) //转大写
